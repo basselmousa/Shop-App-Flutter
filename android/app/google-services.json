@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "240229769881",
+    "project_id": "shop-app-cfe3e",
+    "storage_bucket": "shop-app-cfe3e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240229769881:android:75dcfda6ca2be28e508e08",
+        "android_client_info": {
+          "package_name": "com.bassel.flutter.shop_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "240229769881-798upiaaa2enj0spl36rciu50n64sdc6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bassel.flutter.shop_app",
+            "certificate_hash": "79765c448d577f47d58f4d1306e0249828d9f41f"
+          }
+        },
+        {
+          "client_id": "240229769881-dmteisb2cmk1lj23artq4tku6jdr1q6p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkC3BeRM9Ox5KD_o0K4YyUyqZNIw4z_PI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "240229769881-dmteisb2cmk1lj23artq4tku6jdr1q6p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
