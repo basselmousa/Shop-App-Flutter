@@ -16,9 +16,9 @@ class ProductItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
         child: GestureDetector(
-          onTap: () =>
-              Navigator.of(context)
-                  .pushNamed(ProductDetailScreen.productDetailRouteName, arguments: product.id),
+          onTap: () => Navigator.of(context).pushNamed(
+              ProductDetailScreen.productDetailRouteName,
+              arguments: product.id),
           child: Hero(
             tag: product.id,
             child: FadeInImage(
@@ -31,18 +31,24 @@ class ProductItem extends StatelessWidget {
         footer: GridTileBar(
           backgroundColor: Colors.black87,
           leading: Consumer<Product>(
-            builder: (ctx, product, _) =>
-                IconButton(
-                    icon: Icon(product.isFavorite
-                        ? Icons.favorite
-                        : Icons.favorite_border),
-                    color: Theme
-                        .of(context)
-                        .accentColor,
-                    onPressed: () {
-                      product.toggleFavoriteStatus(
-                          authData.token, authData.userId);
-                    }),
+            builder: (ctx, product, _) => IconButton(
+                icon: Icon(product.isFavorite
+                    ? Icons.favorite
+                    : Icons.favorite_border),
+                color: Theme.of(context).accentColor,
+                onPressed: () {
+                  product
+                      .toggleFavoriteStatus(authData.token, authData.userId)
+                      .catchError((err) => {
+                            Scaffold.of(ctx).showSnackBar(new SnackBar(
+                              content: Text(
+                                err.toString(),
+                                style: TextStyle(color: Colors.red),
+                              ),
+                              duration: Duration(seconds: 3),
+                            ))
+                          });
+                }),
           ),
           title: Text(
             product.title,
@@ -50,19 +56,19 @@ class ProductItem extends StatelessWidget {
           ),
           trailing: IconButton(
               icon: Icon(Icons.shopping_cart),
-              color: Theme
-                  .of(context)
-                  .accentColor,
+              color: Theme.of(context).accentColor,
               onPressed: () {
-
-                  cart.addItem(product.id, product.price, product.title);
-                  Scaffold.of(context).hideCurrentSnackBar();
-                  Scaffold.of(context).showSnackBar(SnackBar(
-                    content: Text("Product ${product.title} Added To Cart"),
-                    duration: Duration(seconds: 2),
-                    action: SnackBarAction(label: "UNDO!", onPressed: () {
-                      cart.removeSingleItem(product.id);
-                    }),));
+                cart.addItem(product.id, product.price, product.title);
+                Scaffold.of(context).hideCurrentSnackBar();
+                Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text("Product ${product.title} Added To Cart"),
+                  duration: Duration(seconds: 2),
+                  action: SnackBarAction(
+                      label: "UNDO!",
+                      onPressed: () {
+                        cart.removeSingleItem(product.id);
+                      }),
+                ));
               }),
         ),
       ),

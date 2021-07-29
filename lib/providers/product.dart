@@ -30,15 +30,17 @@ class Product with ChangeNotifier {
     isFavorite = !isFavorite;
     notifyListeners();
 
-    final url = 'https://shop-app-cfe3e-default-rtdb.firebaseio.com/userFavorites/$userId/$id.json?auth=$token';
+    final url = 'https://shop-app-cfe3e-default-rtdb.firebaseio.com/userFavorites/$userId/$id.json';
     try{
         final res = await http.put(url, body: json.encode(isFavorite));
         if(res.statusCode >= 400){
           _setFavoriteValue(oldStatus);
+          throw("Cant set this item to favorite now. Try Again Later");
         }
     }
     catch(e){
         _setFavoriteValue(oldStatus);
+        throw("Cant set this item to favorite now. Try Again Later");
     }
 
   }
